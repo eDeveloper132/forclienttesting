@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+
+    <!-- Bootstrap icons -->
+    <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google web fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+
+<body>
+    <!-- Theme mode switcher -->
+    <div class="position-absolute end-0 top-0 size-40 me-2 mt-2 z-index-fixed">
+        <label class="dark-mode-checkbox size-40 d-flex align-items-center justify-content-center nav-link p-0" for="ChangeTheme">
+            <input type="checkbox" id="ChangeTheme"/> <span class="slide"></span>
+        </label>
+    </div>
+
+    <!-- PreLoader Start -->
+    <div class="loader bg-gradient-primary text-white">
+        <!-- Placeholder animated layout for preloader -->
+        <div class="d-flex flex-column flex-root">
+            <div class="page d-flex flex-row flex-column-fluid">
+                <div class="page-content ps-0 ms-0 d-flex flex-column flex-row-fluid">
+                    <div class="content flex-column p-4 pb-0 d-flex justify-content-center align-items-center flex-column-fluid position-relative">
+                        <div class="w-100 h-100 position-relative d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader anim-spinner me-2">
+                                <line x1="12" y1="2" x2="12" y2="6"/>
+                                <line x1="12" y1="18" x2="12" y2="22"/>
+                                <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+                                <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+                                <line x1="2" y1="12" x2="6" y2="12"/>
+                                <line x1="18" y1="12" x2="22" y2="12"/>
+                                <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+                                <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                            </svg>
+                            <div>
+                                <span>Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PreLoader END -->
+
+    <div class="d-flex flex-column flex-root">
+        <!-- Page -->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!-- Page content wrapper -->
+            <main class="page-content overflow-hidden ms-0 d-flex flex-column flex-row-fluid">
+                <!-- Content -->
+                <div class="content p-1 d-flex flex-column-fluid position-relative">
+                    <div class="container py-4">
+                        <div class="row h-100 align-items-center justify-content-center">
+                            <div class="col-md-8 col-sm-10 col-lg-6 col-xl-5">
+                                <!-- Card -->
+                                <div class="card card-body border-0 shadow-lg py-5 px-4">
+                                    <div class="text-center">
+                                        <div class="size-60 mx-auto mb-5 bg-success rounded-circle d-flex align-items-center justify-content-center text-white">
+                                            <span class="material-symbols-rounded fs-2 align-middle">check</span>
+                                        </div>
+                                        <div>
+                                            <h2 class="mb-3">Redirecting...</h2>
+                                            <p class="mb-5 text-muted">
+                                                Payment Successfull 
+                                                You will be redirected shortly.
+                                            </p>
+                                            <div id="timer" class="mb-4 fs-3">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page content wrapper end -->
+
+                <!-- Page-footer -->
+                <footer class="pb-3 pb-lg-5 px-3 px-lg-6">
+                    <div class="container-fluid px-0">
+                        <span class="d-block lh-sm small text-muted text-end">&copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>. Copyright
+                        </span>
+                    </div>
+                </footer>
+                <!-- Page Footer End -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Theme Core scripts Start -->
+    <script src="/assets/js/theme.bundle.js"></script>
+    <!-- Theme Core scripts End -->
+
+    <script>
+        // Countdown timer
+        let countdown = 10;
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            if (countdown > 0) {
+                countdown--;
+                timerElement.textContent = countdown;
+                setTimeout(updateTimer, 1000);
+            } else {
+                // Make POST request to /buypackage/succeed
+                fetch('/buypackage/succeed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({}) // Add any data you need to send with the request
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Redirect to /signin after POST request
+                    window.location.href = '/signin';
+                })
+                .catch(error => {
+                    console.error('Error during POST request:', error);
+                    // Redirect to /signin even if the POST request fails
+                    window.location.href = '/signin';
+                });
+            }
+        }
+
+        updateTimer();
+    </script>
+</body>
+
+</html>

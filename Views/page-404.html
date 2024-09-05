@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Assan-Admin</title>
+    <!--Bootstrap icons-->
+    <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!--Google web fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="/assets/css/style.min.css">
+    </head>
+
+    <body>
+
+           <!--Theme mode switcher-->
+        <div class="position-absolute end-0 top-0 size-40 me-2 mt-2 z-index-fixed">
+            <label class="dark-mode-checkbox size-40 d-flex align-items-center justify-content-center nav-link p-0" for="ChangeTheme">
+                <input type="checkbox" id="ChangeTheme"/> <span class="slide"></span>
+                </label>
+        </div>
+
+       <!--////////////////// PreLoader Start//////////////////////-->
+  <div class="loader bg-gradient-primary text-white">
+    <!--Placeholder animated layout for preloader-->
+    <div class="d-flex flex-column flex-root">
+      <div class="page d-flex flex-row flex-column-fluid">
+        <div class="page-content ps-0 ms-0 d-flex flex-column flex-row-fluid">
+          <div
+            class="content flex-column p-4 pb-0 d-flex justify-content-center align-items-center flex-column-fluid position-relative">
+            <div class="w-100 h-100 position-relative d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader anim-spinner me-2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+            <div>
+              <span>Loading...</span>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--////////////////// /.PreLoader END//////////////////////-->
+
+        <div class="d-flex flex-column flex-root">
+            <!--Page-->
+            <div class="page d-flex flex-row flex-column-fluid">
+
+                <!--///////////Page content wrapper///////////////-->
+                <main class="page-content overflow-hidden ms-0 d-flex flex-column flex-row-fluid">
+<!--//Page Toolbar//-->
+                    <div class="toolbar px-3 px-lg-6 py-3">
+                        <div class="position-relative container-fluid px-0">
+                            <div class="row align-items-center position-relative">
+                                <div class="col-md-8">
+                                    <h3 class="mb-2">Page Error</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--//Page Toolbar End//-->
+
+                    <!--//Page content//-->
+                    <div class="content pt-3 px-3 px-lg-6 d-flex flex-column-fluid">
+                        <div class="container-fluid px-0">
+                          <div class="row h-100 align-items-center">
+                              <div class="col-12 col-md-10 col-lg-6 mx-auto">
+                                  <div class="card">
+                                      <div class="card-body p-md-5 p-lg-7">
+                                        <div class="d-flex">
+                                            <h2 class="lh-1 mb-0 flex-shrink-0 me-4">
+                                               <span class="material-symbols-rounded fs-1 align-middle">bug_report</span>
+                                            </h2>
+                                            <div>
+                                                <h3 class="h2">Error 404</h3>
+                                                <p class="fs-6">The page you are trying to reach is not found!</p>
+                                                <a href="/" class="btn btn-light btn-sm">Go back to Dashboard</a>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!--//Page content End//-->
+
+                 <!--//Page-footer//-->
+ <footer class="pb-3 pb-lg-5 px-3 px-lg-6">
+    <div class="container-fluid px-0">
+      <span class="d-block lh-sm small text-muted text-end">&copy;
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+    // Function to determine the greeting based on the current time
+    function getGreeting() {
+      const now = new Date();
+      const hours = now.getHours();
+      
+      let greeting = 'Good evening'; // Default greeting
+
+      if (hours >= 20 && hours < 6) {
+        greeting = 'Good night';
+      } else if (hours >= 6 && hours < 12) {
+        greeting = 'Good morning';
+      } else if (hours >= 12 && hours < 17) {
+        greeting = 'Good afternoon';
+      } else if (hours >= 17 && hours < 20) {
+        greeting = 'Good evening';
+      }
+
+      return greeting;
+    }
+
+    // Update the greeting in the HTML
+    function updateGreeting() {
+      const greetingElement = document.getElementById('greeting');
+      const userGreetingElement = document.getElementById('userGreeting');
+      
+      const greeting = getGreeting();
+      greetingElement.textContent = greeting;
+
+      // Optionally update user name if needed
+      // userGreetingElement.textContent = 'Noah'; // Or dynamically set this
+    }
+
+    // Call the function to set the greeting when the page loads
+    updateGreeting();
+  });
+                       document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch('/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        // Include any necessary payload if required by your API
+        body: JSON.stringify({})
+      });
+      
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      
+      const data = await response.json();
+      
+      if (data) {
+        document.getElementById('userName').textContent = data.Name;
+        document.getElementById('userFullName').textContent = data.Name;
+        document.getElementById('userGreeting').textContent = data.Name;
+        document.getElementById('packagename').textContent = data.PackageName;
+        document.getElementById('packagecoins').textContent = data.Coins;
+        // Update the avatar if needed
+        // document.getElementById('userAvatar').src = '/path/to/avatar/' + data.Avatar;
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  });
+          document.write(new Date().getFullYear())
+        </script>. Copyright
+      </span>
+    </div>
+  </footer>
+  <!--/.Page Footer End-->
+
+                </main>
+                <!--///////////Page content wrapper End///////////////-->
+            </div>
+        </div>
+
+<!--////////////Theme Core scripts Start/////////////////-->
+<script src="/assets/js/theme.bundle.js"></script>
+
+<!--////////////Theme Core scripts End/////////////////-->
+
+
+    </body>
+
+</html>

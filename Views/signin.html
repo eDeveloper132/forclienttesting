@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SMS-PORTAL-Admin</title>
+
+          <!--Bootstrap icons-->
+    <link href="/assets/fonts/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+<!--Google web fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="/assets/css/style.min.css">
+        <style>
+                        #BuTtOn{
+                background: linear-gradient(90.24deg, #0A77B8 0.21%, #0FB3D8 99.82%);
+            }
+            .invalid-feedback { color: red; display: none; }
+
+        </style>
+    </head>
+
+    <body>
+
+        <!--Theme mode switcher-->
+        <div class="position-absolute end-0 top-0 size-40 me-2 mt-2 z-index-fixed">
+            <label class="dark-mode-checkbox size-40 d-flex align-items-center justify-content-center nav-link p-0" for="ChangeTheme">
+                <input type="checkbox" id="ChangeTheme"/> <span class="slide"></span>
+                </label>
+        </div>
+
+        
+       <!--////////////////// PreLoader Start//////////////////////-->
+  <div class="loader bg-gradient-primary text-white">
+    <!--Placeholder animated layout for preloader-->
+    <div class="d-flex flex-column flex-root">
+      <div class="page d-flex flex-row flex-column-fluid">
+        <div class="page-content ps-0 ms-0 d-flex flex-column flex-row-fluid">
+          <div
+            class="content flex-column p-4 pb-0 d-flex justify-content-center align-items-center flex-column-fluid position-relative">
+            <div class="w-100 h-100 position-relative d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader anim-spinner me-2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+            <div>
+              <span>Loading...</span>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--////////////////// /.PreLoader END//////////////////////-->
+
+        <div class="d-flex flex-column flex-root">
+            <!--Page-->
+            <div class="page d-flex flex-row flex-column-fluid">
+                
+                <!--///////////Page content wrapper///////////////-->
+                <main class="page-content overflow-hidden ms-0 d-flex flex-column flex-row-fluid">
+
+                    <!--//content//-->
+                    <div class="content p-1 d-flex flex-column-fluid position-relative">
+                        <div class="container py-4">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-md-8 col-lg-5 col-xl-4">
+                                    <!-- Logo -->
+                                    <a href="/" class="d-flex position-relative mb-4 z-index-1 align-items-center justify-content-center">
+                                        <span>
+                                            <img src="/assets/media/WPcodersProfile.png" alt="" width="100px" height="60px">
+                                        </span>
+                                    </a>
+                                    <!-- Card -->
+                                    <div class="card card-body p-4">
+                                        <div id="toast" class="position-absolute top-0 start-50 translate-middle-x p-3 bg-dark text-white rounded toast">
+                                        </div>
+                                        <h4 class="text-center">Welcome Back!</h4>
+                                        <div class="d-flex justify-content-center">
+                                            <p class="mb-4 text-muted text-center">Please Sign In with details...</p>
+                                            <p style="color: #15b7da">for free.</p>
+                                        </div>
+                                        <form action="/signin" method="POST" class="z-index-1 position-relative needs-validation" id="LoginForm">
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control" name="Email" id="floatingInputEmail" placeholder="name@example.com" required>
+                                                <label for="floatingInputEmail">Email address</label>
+                                                <span class="invalid-feedback" id="emailError">Please enter a valid email address</span>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="password" class="form-control" name="Password" id="floatingPassword" placeholder="Password" required>
+                                                <label for="floatingPassword">Password</label>
+                                                <span class="invalid-feedback" id="passwordError">Password is required</span>
+                                            </div>
+                                            
+                                            <!-- Forgot Password Button -->
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <button type="button" class="btn btn-link p-0" id="forgotPasswordButton">Forgot Password?</button>
+                                            </div>
+                    
+                                            <button class="w-100 btn btn-lg btn-primary" id="BuTtOn" type="submit">Log In</button>
+                                            
+                                            <!-- Resend Verification Code Link -->
+                                            <p class="text-center mt-3">
+                                                <a href="#" id="resendVerificationLink" class="text-body">Resend Verification Code</a>
+                                            </p>
+                    
+                                            <hr class="mt-4">
+                                            <p class="text-muted text-center">
+                                                Don't have an account? <b><a href="/signup" class="ms-2 text-body">Sign Up</a></b>
+                                            </p>
+                                        </form>
+                    
+                                        <script>
+                                            document.getElementById('LoginForm').addEventListener('submit', async function(event) {
+                                                event.preventDefault();
+                    
+                                                // Clear previous error messages
+                                                document.querySelectorAll('.invalid-feedback').forEach(element => {
+                                                    element.style.display = 'none';
+                                                });
+                    
+                                                let isValid = true;
+                    
+                                                // Validate email
+                                                const email = document.getElementById('floatingInputEmail').value;
+                                                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                                if (!emailPattern.test(email)) {
+                                                    document.getElementById('emailError').style.display = 'block';
+                                                    isValid = false;
+                                                }
+                    
+                                                // Validate password
+                                                const password = document.getElementById('floatingPassword').value;
+                                                if (!password) {
+                                                    document.getElementById('passwordError').style.display = 'block';
+                                                    isValid = false;
+                                                }
+                    
+                                                if (isValid) {
+                                                    const formObject = {
+                                                        Email: email,
+                                                        Password: password
+                                                    };
+                    
+                                                    try {
+                                                        const response = await fetch('/signin', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json',
+                                                            },
+                                                            body: JSON.stringify(formObject),
+                                                        });
+                    
+                                                        if (response.ok) {
+                                                            window.location.href = '/'; // Redirect to the home page on successful signin
+                                                        } else if (response.status === 403) {
+                                                            alert('You have not verified your email address. Please check your inbox.');
+                    
+                                                            // Show the "Resend Verification Code" link
+                                                            document.getElementById('resendVerificationLink').style.display = 'block';
+                                                        } else {
+                                                            alert('Invalid credentials or an error occurred. Please make sure that you created an account.');
+                                                            window.location.href = '/signup';
+                                                        }
+                                                    } catch (error) {
+                                                        alert('An error occurred while submitting the form. Please try again.');
+                                                    }
+                                                } else {
+                                                    alert('Please correct the errors in the form before submitting.');
+                                                }
+                                            });
+                    
+                                            document.getElementById('resendVerificationLink').addEventListener('click', async function(event) {
+                                                event.preventDefault();
+                    
+                                                const email = document.getElementById('floatingInputEmail').value;
+                                                if (!email) {
+                                                    alert('Please enter your email address to resend the verification code.');
+                                                    return;
+                                                }
+                    
+                                                try {
+                                                    const response = await fetch('/resend-verification', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                        },
+                                                        body: JSON.stringify({ Email: email }),
+                                                    });
+                    
+                                                    if (response.ok) {
+                                                        alert('Verification code has been resent to your email address.');
+                                                    } else {
+                                                        alert('An error occurred while resending the verification code. Please try again.');
+                                                    }
+                                                } catch (error) {
+                                                    alert('An error occurred while resending the verification code. Please try again.');
+                                                }
+                                            });
+                    
+                                            // Forgot Password Button Click Event
+                                            document.getElementById('forgotPasswordButton').addEventListener('click', async function() {
+                                                const email = document.getElementById('floatingInputEmail').value;
+                                                if (!email) {
+                                                    alert('Please enter your email address to recover your password.');
+                                                    return;
+                                                }
+                    
+                                                await recoverPassword(email);
+                                            });
+                    
+                                            async function recoverPassword(email) {
+                                                const toast = document.getElementById('toast');
+                                                try {
+                                                    const response = await fetch('/recoverpass', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                        },
+                                                        body: JSON.stringify({ email: email }),
+                                                    });
+                    
+                                                    if (response.ok) {
+                                                        const data = await response.json();
+                                                        showToast(`Success: ${data.message}`, 'success');
+                                                    } else {
+                                                        const errorMessage = await response.text();
+                                                        showToast(`Error: ${errorMessage}`, 'error');
+                                                    }
+                                                } catch (error) {
+                                                    showToast('An unexpected error occurred. Please try again.', 'error');
+                                                }
+                                            }
+                    
+                                            function showToast(message, type) {
+                                                const toast = document.getElementById('toast');
+                                                toast.textContent = message;
+                                                toast.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+                                                toast.style.display = 'block';
+                                                setTimeout(() => {
+                                                    toast.style.display = 'none';
+                                                }, 15000); // Hide after 15 seconds
+                                            }
+                    
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!--///////////Page content wrapper end///////////////-->
+
+      <!--//Page-footer//-->
+ <footer class="pb-3 pb-lg-5 px-3 px-lg-6">
+    <div class="container-fluid px-0">
+      <span class="d-block lh-sm small text-muted text-end">&copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>. Copyright
+      </span>
+    </div>
+  </footer>
+  <!--/.Page Footer End-->
+
+                </main>
+            </div>
+        </div>
+ 
+<!--////////////Theme Core scripts Start/////////////////-->
+<script src="/assets/js/theme.bundle.js"></script>
+
+<!--////////////Theme Core scripts End/////////////////-->
+
+    </body>
+
+</html>
