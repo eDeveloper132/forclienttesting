@@ -21,10 +21,10 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 await connection();
-const SessionManager = [];
-const OneTime = [];
+export const SessionManager = [];
+export const OneTime = [];
 const ExpiredTokens = [];
-const FetchUserDetails = []; // Adjust the type based on your actual user schema
+export const FetchUserDetails = []; // Adjust the type based on your actual user schema
 const verificateUser = [];
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 function clearOneTimeToken() {
@@ -324,4 +324,3 @@ app.post('/resend-verification', async (req, res) => {
 app.use("*", (req, res) => {
     res.status(404).sendFile(path.resolve(__dirname, './Views/page-404.html'));
 });
-export { FetchUserDetails, OneTime, SessionManager };
